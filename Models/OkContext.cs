@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using Microsoft.EntityFrameworkCore;
 
-namespace HumanResourcesDepartmentWPFApp;
+namespace HumanResourcesDepartmentWPFApp.Models;
 
 public partial class OkContext : DbContext
 {
@@ -25,7 +26,7 @@ public partial class OkContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 
-        => optionsBuilder.UseSqlite("Data Source=C:\\Users\\Lenovo\\source\\repos\\HumanResourcesDepartmentWPFApp\\bin\\Debug\\net8.0-windows\\ok.db");
+        => optionsBuilder.UseSqlite(PacHt());
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -78,6 +79,18 @@ public partial class OkContext : DbContext
 
         OnModelCreatingPartial(modelBuilder);
     }
+
+    //Относительный путь
+    static private string PacHt()
+    {
+        var x = Directory.GetCurrentDirectory();
+        var y = Directory.GetParent(x).FullName;
+        var c = Directory.GetParent(y).FullName;
+        var r = "Data Source=" + Directory.GetParent(c).FullName + @"\DB\ok.db";
+        return r;
+    }
+
+
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 }

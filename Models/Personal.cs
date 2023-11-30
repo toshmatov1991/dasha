@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace HumanResourcesDepartmentWPFApp;
+namespace HumanResourcesDepartmentWPFApp.Models;
 
 public partial class Personal
 {
