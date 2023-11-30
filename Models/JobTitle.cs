@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using HumanResourcesDepartmentWPFApp.Models;
 
-namespace HumanResourcesDepartmentWPFApp;
+namespace HumanResourcesDepartmentWPFApp.Models;
 
 public partial class JobTitle
 {
