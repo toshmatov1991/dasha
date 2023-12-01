@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:HumanResourcesDepartmentWPFApp"
         xmlns:gif="http://wpfanimatedgif.codeplex.com"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen" WindowStyle="ThreeDBorderWindow"
-        Title="Главное окно" Height="700" MaxHeight="710" Width="1100" MaxWidth="1105" Closing="BaseClose">
+        Title="Главное окно" Height="730" MaxHeight="750" Width="1100" MaxWidth="1105" Closing="BaseClose">
     <Border Padding="3">
         <Grid Background="Khaki">
             <Grid.ColumnDefinitions>
@@ -30,24 +30,24 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
-            
-            
+
+
             <Image gif:ImageBehavior.RepeatBehavior="3x" gif:ImageBehavior.AnimatedSource="Images/ty.gif" Height="116" Grid.RowSpan="2" VerticalAlignment="Top" Grid.Column="4" Grid.ColumnSpan="2" Margin="33,5,88,0" />
 
 
             <DataGrid x:Name="dataGrid"
                       Background="AliceBlue"
-                      Grid.ColumnSpan="5"
+                      Grid.ColumnSpan="6"
                       Grid.Row="2"
                       RowHeight="30"
                       VerticalContentAlignment="Center"
-                      Grid.RowSpan="6"
+                      Grid.RowSpan="8"
                       CanUserSortColumns="True"
                       CanUserDeleteRows="False"
                       AutoGenerateColumns="False"
                       CanUserAddRows="False"
                       AllowDrop="False" 
-                      Margin="15 0 -10 0"
+                      Margin="15,0,132,35"
                       RowBackground="White" 
                       CellEditEnding="UpdateEntry">
                 <DataGrid.Columns>
