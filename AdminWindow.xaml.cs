@@ -23,5 +23,11 @@ namespace HumanResourcesDepartmentWPFApp
         {
             InitializeComponent();
         }
+
+        private void AdminClose(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            MainWindow mainWindow = new();
+            mainWindow.Show();
+        }
     }
 }
