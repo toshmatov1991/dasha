@@ -168,5 +168,32 @@ namespace HumanResourcesDepartmentWPFApp
             }
 
         }
+
+
+        // Просмотр карточки сотрудника
+        private void ViewCardPerson(object sender, RoutedEventArgs e)
+        {
+            CardPerson cardPerson = new();
+            cardPerson.ShowDialog();
+        }
+
+
+        // Удалить запись
+        private void DeleteEntry(object sender, RoutedEventArgs e)
+        {
+            using OkContext ok = new();
+            MessageBoxResult result = MessageBox.Show("Вы уверены что хотите удалить запись?", "Внимание", MessageBoxButton.YesNo, MessageBoxImage.Information);
+            if (result == MessageBoxResult.Yes)
+            {
+                int numberOfRowDeleted = ok.Database.ExecuteSqlRaw("DELETE FROM Personal WHERE id = {0}", (dataGrid.SelectedItem as Personal)?.Id);
+                if (numberOfRowDeleted == 1)
+                    StartTable();
+
+                else
+                    MessageBox.Show("Произошла ошибка при удалении записи\n Повторите попытку");
+
+            }
+           
+        }
     }
 }

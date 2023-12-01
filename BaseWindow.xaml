@@ -45,11 +45,19 @@
                       CanUserSortColumns="True"
                       CanUserDeleteRows="False"
                       AutoGenerateColumns="False"
+                      SelectionMode="Single"
+                      SelectionUnit="FullRow"
                       CanUserAddRows="False"
                       AllowDrop="False" 
                       Margin="15,0,132,35"
                       RowBackground="White" 
                       CellEditEnding="UpdateEntry">
+                <DataGrid.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Просмотр карточки сотрудника" Click="ViewCardPerson" />
+                        <MenuItem Header="Удалить запись" Click="DeleteEntry" />
+                    </ContextMenu>
+                </DataGrid.ContextMenu>
                 <DataGrid.Columns>
                     <DataGridTextColumn Binding="{Binding Id, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" Header="ID"/>
                     <DataGridTextColumn Binding="{Binding Family, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Фамилия"/>
