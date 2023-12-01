@@ -9,11 +9,11 @@
     <Grid>
         <Image Margin="0,0,0,233" Source="/Images/1234.jpg" Stretch="Fill"/>
         <TextBlock HorizontalAlignment="Center" Foreground="DarkGreen" FontStyle="Italic" Margin="0,251,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="168" RenderTransformOrigin="0.58,0.525"><Run Language="ru-ru" FontSize="25" Text="Авторизация"/></TextBlock>
-        <TextBox HorizontalAlignment="Center" Name="loginX" Margin="0,326,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" Name="loginX" Margin="238,324,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="146" Height="21"/>
         <Button Background="AliceBlue" Content="Войти" HorizontalAlignment="Center" Margin="0,425,0,0" VerticalAlignment="Top" Height="33" Width="102" Click="Button_Click"/>
-        <TextBlock HorizontalAlignment="Left" Margin="240,308,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="154" RenderTransformOrigin="0.58,0.525"><Run Language="ru-ru" Text="Логин"/></TextBlock>
-        <TextBlock HorizontalAlignment="Left" Margin="240,354,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="154" RenderTransformOrigin="0.58,0.525"><Run Language="ru-ru" Text="Пароль"/></TextBlock>
-        <TextBox HorizontalAlignment="Center" Name="PasswX" Margin="0,372,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBlock HorizontalAlignment="Left" Margin="240,299,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="154" RenderTransformOrigin="0.58,0.525"><Run Language="ru-ru" Text="Логин" FontSize="18"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="240,349,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="154" RenderTransformOrigin="0.58,0.525"><Run Language="ru-ru" Text="Пароль" FontSize="18"/></TextBlock>
+        <TextBox HorizontalAlignment="Left" Name="PasswX" Margin="238,374,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="146" Height="21"/>
 
 
 
