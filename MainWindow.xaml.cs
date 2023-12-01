@@ -19,6 +19,9 @@ namespace HumanResourcesDepartmentWPFApp
         public MainWindow()
         {
             InitializeComponent();
+            BaseWindow @base = new();
+            @base.Show();
+            Close();
         }
 
 

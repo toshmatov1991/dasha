@@ -15,8 +15,5 @@
         <TextBlock HorizontalAlignment="Left" Margin="240,349,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="154" RenderTransformOrigin="0.58,0.525"><Run Language="ru-ru" Text="Пароль" FontSize="18"/></TextBlock>
         <TextBox HorizontalAlignment="Left" Name="PasswX" Margin="238,374,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="146" Height="21"/>
 
-
-
-
     </Grid>
 </Window>

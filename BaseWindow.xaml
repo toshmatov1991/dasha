@@ -4,9 +4,97 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HumanResourcesDepartmentWPFApp"
-        mc:Ignorable="d"
-        Title="Главное окно" Height="450" Width="800" Closing="BaseClose">
-    <Grid>
-        
-    </Grid>
+        xmlns:gif="http://wpfanimatedgif.codeplex.com"
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen" WindowStyle="ThreeDBorderWindow"
+        Title="Главное окно" Height="700" MaxHeight="710" Width="1100" MaxWidth="1105" Closing="BaseClose">
+    <Border Padding="3">
+        <Grid Background="Khaki">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            
+            
+            <Image gif:ImageBehavior.RepeatBehavior="3x" gif:ImageBehavior.AnimatedSource="Images/ty.gif" Height="116" Grid.RowSpan="2" VerticalAlignment="Top" Grid.Column="4" Grid.ColumnSpan="2" Margin="33,5,88,0" />
+
+
+            <DataGrid x:Name="dataGrid"
+                      Background="AliceBlue"
+                      Grid.ColumnSpan="5"
+                      Grid.Row="2"
+                      RowHeight="30"
+                      VerticalContentAlignment="Center"
+                      Grid.RowSpan="6"
+                      CanUserSortColumns="True"
+                      CanUserDeleteRows="False"
+                      AutoGenerateColumns="False"
+                      CanUserAddRows="False"
+                      AllowDrop="False" 
+                      Margin="15 0 -10 0"
+                      RowBackground="White">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Id, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" Header="ID"/>
+                    <DataGridTextColumn Binding="{Binding Family, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Фамилия"/>
+                    <DataGridTextColumn Binding="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Имя"/>
+                    <DataGridTextColumn Binding="{Binding Lastname, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Отчество"/>
+                    <DataGridTextColumn Binding="{Binding Inn, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="ИНН"/>
+                    <DataGridTemplateColumn CanUserSort="True" Header="Подразделение" SortMemberPath="Area">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <ComboBox ItemsSource="{Binding SubCombobox, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
+                                          SelectedValue="{Binding SubDivision, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                          DisplayMemberPath="NameDivisions"
+                                          SelectedValuePath="Id"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Должность" CanUserSort="True" SortMemberPath="Local">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <ComboBox ItemsSource="{Binding JobCombobox, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
+                                          SelectedValue="{Binding JobTitle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                          DisplayMemberPath="NameJobTitle"
+                                          SelectedValuePath="Id"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Binding="{Binding Adress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Адрес"/>
+
+                    <DataGridTemplateColumn Header="Район" CanUserSort="True" SortMemberPath="Lgota">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <ComboBox ItemsSource="{Binding AreaCombobox, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
+                                          SelectedValue="{Binding Area, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                          DisplayMemberPath="NameArea"
+                                          SelectedValuePath="Id"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTextColumn Binding="{Binding ChildrenCount, UpdateSourceTrigger=PropertyChanged}" Header="Дети"/>
+
+                </DataGrid.Columns>
+            </DataGrid>
+            <TextBlock HorizontalAlignment="Left" FontStyle="Italic" FontSize="25" TextWrapping="Wrap" VerticalAlignment="Top" Margin="150,44,0,0" Height="58" Width="670" Grid.RowSpan="2" Grid.ColumnSpan="5"><Run Language="ru-ru" Text="Список сотрудников компании ООО "/><Run Text="&quot;"/><Run Language="ru-ru" Text="Тюлени-ПРО"/><Run Text="&quot;"/></TextBlock>
+
+
+        </Grid>
+    </Border>
 </Window>

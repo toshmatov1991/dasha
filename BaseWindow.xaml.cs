@@ -1,4 +1,6 @@
-﻿using System;
+﻿using HumanResourcesDepartmentWPFApp.Models;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,15 +21,38 @@ namespace HumanResourcesDepartmentWPFApp
     /// </summary>
     public partial class BaseWindow : Window
     {
+
+        public static List<Area>? AreaCombobox { get; set; }
+        public static List<JobTitle>? JobCombobox { get; set; }
+        public static List<SubDivision>? SubCombobox { get; set; }
+
+
         public BaseWindow()
         {
             InitializeComponent();
+            StartTable();
         }
+
+
+        private void StartTable()
+        {
+            using OkContext ok = new();
+
+            dataGrid.ItemsSource =  ok.Personals.ToList();
+
+
+            //Заполнение Comboboxes
+            AreaCombobox =  [.. ok.Areas];
+            JobCombobox = [.. ok.JobTitles];
+            SubCombobox = [.. ok.SubDivisions];
+        }
+
+
 
         private void BaseClose(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            MainWindow mainWindow = new();
-            mainWindow.Show();
+            //MainWindow mainWindow = new();
+            //mainWindow.Show();
         }
     }
 }
