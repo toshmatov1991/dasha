@@ -62,7 +62,8 @@
                                 <ComboBox ItemsSource="{Binding SubCombobox, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
                                           SelectedValue="{Binding SubDivision, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                           DisplayMemberPath="NameDivisions"
-                                          SelectedValuePath="Id"/>
+                                          SelectedValuePath="Id" 
+                                          DropDownClosed="UpdateSub"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
@@ -72,7 +73,7 @@
                                 <ComboBox ItemsSource="{Binding JobCombobox, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
                                           SelectedValue="{Binding JobTitle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                           DisplayMemberPath="NameJobTitle"
-                                          SelectedValuePath="Id"/>
+                                          SelectedValuePath="Id" DropDownClosed="UpdateJob"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
@@ -84,7 +85,7 @@
                                 <ComboBox ItemsSource="{Binding AreaCombobox, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
                                           SelectedValue="{Binding Area, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                           DisplayMemberPath="NameArea"
-                                          SelectedValuePath="Id"/>
+                                          SelectedValuePath="Id" DropDownClosed="UpdateArea"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
