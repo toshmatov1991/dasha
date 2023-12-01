@@ -48,7 +48,8 @@
                       CanUserAddRows="False"
                       AllowDrop="False" 
                       Margin="15 0 -10 0"
-                      RowBackground="White">
+                      RowBackground="White" 
+                      CellEditEnding="UpdateEntry">
                 <DataGrid.Columns>
                     <DataGridTextColumn Binding="{Binding Id, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" Header="ID"/>
                     <DataGridTextColumn Binding="{Binding Family, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Фамилия"/>

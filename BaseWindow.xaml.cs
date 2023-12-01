@@ -33,7 +33,7 @@ namespace HumanResourcesDepartmentWPFApp
             StartTable();
         }
 
-
+        // Заполнение таблицы
         private void StartTable()
         {
             using OkContext ok = new();
@@ -48,11 +48,31 @@ namespace HumanResourcesDepartmentWPFApp
         }
 
 
-
+        //При закрытии открывается окно авторизации
         private void BaseClose(object sender, System.ComponentModel.CancelEventArgs e)
         {
             //MainWindow mainWindow = new();
             //mainWindow.Show();
         }
-    }
+
+
+        //Обновление записи
+        private async void UpdateEntry(object sender, DataGridCellEditEndingEventArgs e)
+        {
+            Personal? a = e.Row.Item as Personal;
+
+            using OkContext ok = new();
+
+            if (a.Id != 0)
+            {
+                var upPer = await ok.Database.ExecuteSqlAsync($"UPDATE Personal SET family = {a.Family}, name = {a.Name}, lastname = {a.Lastname}, subDivision = {a.SubDivision}, jobTitle = {a.JobTitle}, adress = {a.Adress}, area = {a.Area}, inn = {a.Inn}, childrenCount = {a.ChildrenCount} WHERE id = {a.Id}");
+                if (upPer == 0)
+                    MessageBox.Show("Произошла ошибка при обновлении таблицы(Заявитель)\nПовторите попытку");
+                
+                
+                
+
+
+            }
+        }
 }
