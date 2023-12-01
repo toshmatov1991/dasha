@@ -95,6 +95,9 @@
                 </DataGrid.Columns>
             </DataGrid>
             <TextBlock HorizontalAlignment="Left" FontStyle="Italic" FontSize="25" TextWrapping="Wrap" VerticalAlignment="Top" Margin="150,44,0,0" Height="58" Width="670" Grid.RowSpan="2" Grid.ColumnSpan="5"><Run Language="ru-ru" Text="Список сотрудников компании ООО "/><Run Text="&quot;"/><Run Language="ru-ru" Text="Тюлени-ПРО"/><Run Text="&quot;"/></TextBlock>
+            <Button Grid.Column="5" Background="AliceBlue" Content="Добавить запись" HorizontalAlignment="Left" Height="47" Margin="62,53,0,0" Grid.Row="8" VerticalAlignment="Top" Width="110" Grid.RowSpan="2" Click="Button_Click">
+
+            </Button>
 
 
         </Grid>

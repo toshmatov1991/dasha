@@ -72,6 +72,7 @@ namespace HumanResourcesDepartmentWPFApp
             }
         }
 
+        #region Обновление ComboBox
         private async void UpdateSub(object sender, EventArgs e)
         {
             if ((dataGrid.SelectedItem as Personal)?.Id == 0 || (dataGrid.SelectedItem as Personal)?.Id == null)
@@ -145,6 +146,27 @@ namespace HumanResourcesDepartmentWPFApp
                     MessageBox.Show("Произошла ошибка, повторите попытку", ex.Message);
                 }
             }
+        }
+        #endregion
+
+
+        // Добавить запись в Таблицу
+        private async void Button_Click(object sender, RoutedEventArgs e)
+        {
+            using OkContext ok = new();
+
+            dataGrid.CanUserAddRows = true;
+            //INSERT INTO Personal(family, name, lastname, subDivision, jobTitle, adress, area, inn, childrenCount) VALUES(NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)
+
+            var AddPer = await ok.Database.ExecuteSqlAsync($"INSERT INTO Personal(family, name, lastname, subDivision, jobTitle, adress, area, inn, childrenCount) VALUES({null}, {null}, {null}, {null}, {null}, {null}, {null}, {null}, {null})");
+            if (AddPer == 0)
+                MessageBox.Show("Произошла ошибка при обновлении таблицы(Заявитель)\nПовторите попытку");
+            else
+            {
+                StartTable();
+                dataGrid.CanUserAddRows = false;
+            }
+
         }
     }
 }
