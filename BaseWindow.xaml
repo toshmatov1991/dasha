@@ -106,6 +106,19 @@
             <Button Grid.Column="5" Background="AliceBlue" Content="Добавить запись" HorizontalAlignment="Left" Height="47" Margin="62,53,0,0" Grid.Row="8" VerticalAlignment="Top" Width="110" Grid.RowSpan="2" Click="Button_Click">
 
             </Button>
+            <TextBox Grid.Column="2" 
+                     HorizontalAlignment="Left"
+                     Margin="30,36,0,0" 
+                     Grid.Row="1" 
+                     Name="sX"
+                     VerticalAlignment="Top"
+                     Width="218" 
+                     Grid.ColumnSpan="2"
+                     Height="25" 
+                     KeyUp="SearchTable"/>
+            
+            
+            <TextBlock FontStyle="Italic" FontSize="18" Grid.Column="1" HorizontalAlignment="Left" Margin="130,36,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="69" Height="20"><Run Language="ru-ru" Text="Поиск"/></TextBlock>
 
 
         </Grid>

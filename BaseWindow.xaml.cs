@@ -26,6 +26,7 @@ namespace HumanResourcesDepartmentWPFApp
         public static List<Area>? AreaCombobox { get; set; }
         public static List<JobTitle>? JobCombobox { get; set; }
         public static List<SubDivision>? SubCombobox { get; set; }
+        public static List<Personal>? MyListPersonal { get; set; }
 
 
         public BaseWindow()
@@ -39,13 +40,15 @@ namespace HumanResourcesDepartmentWPFApp
         {
            using OkContext ok = new();
 
-            dataGrid.ItemsSource = ok.Personals.ToList();
+            MyListPersonal = ok.Personals.ToList();
+
+            dataGrid.ItemsSource = MyListPersonal;
 
 
-            //Заполнение Comboboxes
-            AreaCombobox = ok.Areas.ToList();
-            JobCombobox = ok.JobTitles.ToList();
-            SubCombobox = ok.SubDivisions.ToList();
+           //Заполнение Comboboxes
+           AreaCombobox = ok.Areas.ToList();
+           JobCombobox = ok.JobTitles.ToList();
+           SubCombobox = ok.SubDivisions.ToList();
 
 
 
@@ -198,5 +201,22 @@ namespace HumanResourcesDepartmentWPFApp
             }
            
         }
+
+        private async void SearchTable(object sender, KeyEventArgs e)
+        {
+            if (sX.Text == "")
+                StartTable();
+            
+            else
+            {
+                using OkContext db = new();
+
+                var sesese = await db.Personals.ToListAsync();
+                dataGrid.ItemsSource = sesese.Where(a => a.Family.ToLower().Contains(sX.Text.ToLower())).ToList();
+            }
+                
+            
+        }
     }
 }
+ 
