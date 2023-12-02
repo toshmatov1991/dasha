@@ -116,9 +116,22 @@
                      Grid.ColumnSpan="2"
                      Height="25" 
                      KeyUp="SearchTable"/>
-            
-            
+
+
             <TextBlock FontStyle="Italic" FontSize="18" Grid.Column="1" HorizontalAlignment="Left" Margin="130,36,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="69" Height="20"><Run Language="ru-ru" Text="Поиск"/></TextBlock>
+            <Button Grid.Column="5" 
+                    Content="Выгрузить в Excel"
+                    HorizontalAlignment="Left"
+                    Margin="62,50,0,0"
+                    Grid.Row="7"
+                    Background="LightGreen"
+                    FontSize="13"
+                    VerticalContentAlignment="Center"
+                    VerticalAlignment="Top" 
+                    RenderTransformOrigin="-0.193,-2.024"
+                    Height="48" 
+                    Grid.RowSpan="2" 
+                    Width="110" Click="Button_Click_1"/>
 
 
         </Grid>

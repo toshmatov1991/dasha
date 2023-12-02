@@ -1,8 +1,12 @@
 ﻿using HumanResourcesDepartmentWPFApp.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Win32;
+using SpreadsheetLight;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +17,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Media.TextFormatting;
 using System.Windows.Shapes;
 
 namespace HumanResourcesDepartmentWPFApp
@@ -202,6 +207,8 @@ namespace HumanResourcesDepartmentWPFApp
            
         }
 
+
+        // Поиск - добить
         private async void SearchTable(object sender, KeyEventArgs e)
         {
             if (sX.Text == "")
@@ -217,6 +224,193 @@ namespace HumanResourcesDepartmentWPFApp
                 
             
         }
+
+
+        //Выгрузить в Excel
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            SaveFileDialog saveFile = new()
+            {
+                DefaultExt = "xlsx"
+
+            };
+
+            if (saveFile.ShowDialog() == true)
+            {
+                new Thread(() => { CreateFile(saveFile.FileName); }) { IsBackground = true }.Start();
+            }
+        }
+
+
+        private void CreateFile(string str)
+        {
+            #region Стили
+            //Стиль главного заголовка
+            SLStyle titleStyle = new SLStyle();
+            titleStyle.Font.FontName = "Arial";
+            titleStyle.Font.FontSize = 12;
+            titleStyle.Font.Bold = true;
+            titleStyle.SetWrapText(true);
+            titleStyle.SetVerticalAlignment(DocumentFormat.OpenXml.Spreadsheet.VerticalAlignmentValues.Center);
+            titleStyle.SetHorizontalAlignment(DocumentFormat.OpenXml.Spreadsheet.HorizontalAlignmentValues.Center);
+
+            //Стиль месяца
+            SLStyle itemRowHeaderStyle = new SLStyle();
+            itemRowHeaderStyle.Font.FontName = "Arial";
+            itemRowHeaderStyle.Font.FontSize = 14;
+            itemRowHeaderStyle.SetWrapText(true);
+            titleStyle.Font.Bold = true;
+            itemRowHeaderStyle.SetVerticalAlignment(DocumentFormat.OpenXml.Spreadsheet.VerticalAlignmentValues.Center);
+            itemRowHeaderStyle.SetHorizontalAlignment(DocumentFormat.OpenXml.Spreadsheet.HorizontalAlignmentValues.Center);
+            itemRowHeaderStyle.Border.BottomBorder.BorderStyle = itemRowHeaderStyle.Border.TopBorder.BorderStyle = itemRowHeaderStyle.Border.LeftBorder.BorderStyle = itemRowHeaderStyle.Border.RightBorder.BorderStyle = DocumentFormat.OpenXml.Spreadsheet.BorderStyleValues.Thin;
+            itemRowHeaderStyle.Border.BottomBorder.Color = itemRowHeaderStyle.Border.TopBorder.Color = itemRowHeaderStyle.Border.LeftBorder.Color = itemRowHeaderStyle.Border.RightBorder.Color = System.Drawing.Color.Black;
+
+            //Стиль значения
+            SLStyle strokeStyle = new SLStyle();
+            strokeStyle.Font.FontName = "Arial";
+            strokeStyle.Font.FontSize = 12;
+            strokeStyle.Font.Bold = false;
+            strokeStyle.SetWrapText(true);
+            strokeStyle.SetVerticalAlignment(DocumentFormat.OpenXml.Spreadsheet.VerticalAlignmentValues.Center);
+            strokeStyle.SetHorizontalAlignment(DocumentFormat.OpenXml.Spreadsheet.HorizontalAlignmentValues.Center);
+            #endregion
+
+            if (str != string.Empty)
+            {
+                try
+                {
+                    // Создаю документ
+                    using SLDocument doc = new();
+
+
+                    // Генерация колонок в зависимости от выбора Месяцев
+                    // Создаю объкт таблицы
+                    DataTable dt = new();
+
+                    List<string> strings = new() { "Id", "Фамилия", "Имя", "Отчество", "ИНН", "Подразделение", "Должность", "Выплаты", "Адрес", "Район", "Дети" };
+
+
+                    //Затем в цикле надо задать Заголовки
+                    foreach (var item in strings)
+                    {
+                        dt.Columns.Add(item, typeof(string));
+
+                    }
+
+                    // Задать стиль района Главного Заголовка
+                    doc.SetRowHeight(1, 35);
+
+                    // Задать стили заголовков месяцев колонок
+                    for (int j = 1; j < strings.Count + 1; j++)
+                    {
+                        doc.SetColumnWidth(j, 22);
+                        doc.SetColumnStyle(j, titleStyle);
+                    }
+
+                    //Задаю стиль заголовка
+                    doc.ImportDataTable(1, 1, dt, true);
+
+                    //Запрос
+                    using OkContext db = new();
+
+                    var getMyPers = from p in db.Personals
+                                    join j in db.JobTitles on p.JobTitle equals j.Id
+                                    join a in db.Areas on p.Area equals a.Id
+                                    join s in db.SubDivisions on p.SubDivision equals s.Id
+                                    select new
+                                    {
+                                        p.Family,
+                                        p.Name,
+                                        p.Lastname,
+                                        a.NameArea,
+                                        p.Adress,
+                                        p.Inn,
+                                        p.ChildrenCount,
+                                        s.NameDivisions,
+                                        j.NameJobTitle,
+                                        j.Salary
+                                    };
+
+                    foreach (var item in strings)
+                    {
+                        
+                    }
+
+
+
+
+                    // Заполнение колонки районами и значениями сразу //Индекс района
+                    //foreach (var a in analog)
+                    //{
+                    //    summTotal = 0;
+                    //    foreach (var item in getMyArea)
+                    //    {
+                    //        /* A B C D E F G H I J K L M */
+
+                    //        if (dewq)
+                    //        {
+                    //            doc.SetCellValue($"A{i}", item.AreaName);
+                    //            doc.SetCellStyle($"A{i}", liderStyle);
+                    //            doc.SetRowHeight(i, 25);
+                    //        }
+
+
+                    //        // Получить Id Района
+                    //        var idArea = db.Areas.Where(u => u.AreaName == item.AreaName).FirstOrDefault();
+
+
+                    //        // Количество сертов
+
+                    //        var countSert = from r in db.Registries.Where(u => u.SerialAndNumberSert != null
+                    //                                                        && u.DateGetSert.Value.Year == yearCodeBehind.Year
+                    //                                                        && u.DateGetSert.Value.Month == a)
+                    //                        join ap in db.Applicants.Where(a => a.AreaFk == idArea.Id) on r.ApplicantFk equals ap.Id
+                    //                        select new
+                    //                        {
+                    //                            id = r.Id
+                    //                        };
+
+
+                    //        doc.SetCellValue($"{chars[ch]}{i}", countSert.Count());
+                    //        summTotal += countSert.Count();
+                    //        doc.SetCellStyle($"{chars[ch]}{i}", strokeStyle);
+                    //        doc.SetRowHeight(i, 25);
+
+                    //        i++;
+                    //    }
+                    //    nextLine = i;
+                    //    totalByMonth.Add(summTotal);
+                    //    i = 2;
+                    //    ch++;
+                    //    dewq = false;
+                    //}
+
+
+
+
+
+                    // Сохранение документа
+                    doc.SaveAs(str);
+
+
+                    // Открыть файл
+                    Process.Start(new ProcessStartInfo { FileName = str, UseShellExecute = true });
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+
+            }
+
+        }
+
+
+
+
+
     }
 }
  
