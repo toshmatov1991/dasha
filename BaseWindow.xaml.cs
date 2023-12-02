@@ -37,15 +37,18 @@ namespace HumanResourcesDepartmentWPFApp
         // Заполнение таблицы
         private void StartTable()
         {
-            using OkContext ok = new();
+           using OkContext ok = new();
 
             dataGrid.ItemsSource = ok.Personals.ToList();
 
 
             //Заполнение Comboboxes
-            AreaCombobox = [.. ok.Areas];
-            JobCombobox = [.. ok.JobTitles];
-            SubCombobox = [.. ok.SubDivisions];
+            AreaCombobox = ok.Areas.ToList();
+            JobCombobox = ok.JobTitles.ToList();
+            SubCombobox = ok.SubDivisions.ToList();
+
+
+
         }
 
 
@@ -173,7 +176,7 @@ namespace HumanResourcesDepartmentWPFApp
         // Просмотр карточки сотрудника
         private void ViewCardPerson(object sender, RoutedEventArgs e)
         {
-            CardPerson cardPerson = new();
+            CardPerson cardPerson = new((dataGrid.SelectedItem as Personal).Id);
             cardPerson.ShowDialog();
         }
 

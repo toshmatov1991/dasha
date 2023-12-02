@@ -21,6 +21,8 @@ namespace HumanResourcesDepartmentWPFApp
             InitializeComponent();
             BaseWindow @base = new();
             @base.Show();
+            //TEST tEST = new();
+            //tEST.Show();
             Close();
         }
 
@@ -32,7 +34,10 @@ namespace HumanResourcesDepartmentWPFApp
 
             if(string.IsNullOrWhiteSpace(loginX.Text) && string.IsNullOrWhiteSpace(PasswX.Text) 
             || string.IsNullOrWhiteSpace(loginX.Text) || string.IsNullOrWhiteSpace(PasswX.Text))
+            {
                 MessageBox.Show("Вы пропустили поле\nПовторите попытку", "Внимание", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+               
             else
             {
                 if(loginX.Text == "user" && PasswX.Text == "user")
