@@ -303,7 +303,7 @@ namespace HumanResourcesDepartmentWPFApp
                     // Задать стили заголовков месяцев колонок
                     for (int j = 1; j < strings.Count + 1; j++)
                     {
-                        doc.SetColumnWidth(j, 22);
+                        doc.SetColumnWidth(j, 20);
                         doc.SetColumnStyle(j, titleStyle);
                     }
 
@@ -319,6 +319,7 @@ namespace HumanResourcesDepartmentWPFApp
                                     join s in db.SubDivisions on p.SubDivision equals s.Id
                                     select new
                                     {
+                                        p.Id,
                                         p.Family,
                                         p.Name,
                                         p.Lastname,
@@ -331,63 +332,27 @@ namespace HumanResourcesDepartmentWPFApp
                                         j.Salary
                                     };
 
-                    foreach (var item in strings)
-                    {
-                        
-                    }
 
+                    int rowIndex = 2;
 
-
-
-                    // Заполнение колонки районами и значениями сразу //Индекс района
-                    //foreach (var a in analog)
-                    //{
-                    //    summTotal = 0;
-                    //    foreach (var item in getMyArea)
-                    //    {
-                    //        /* A B C D E F G H I J K L M */
-
-                    //        if (dewq)
-                    //        {
-                    //            doc.SetCellValue($"A{i}", item.AreaName);
-                    //            doc.SetCellStyle($"A{i}", liderStyle);
-                    //            doc.SetRowHeight(i, 25);
-                    //        }
-
-
-                    //        // Получить Id Района
-                    //        var idArea = db.Areas.Where(u => u.AreaName == item.AreaName).FirstOrDefault();
-
-
-                    //        // Количество сертов
-
-                    //        var countSert = from r in db.Registries.Where(u => u.SerialAndNumberSert != null
-                    //                                                        && u.DateGetSert.Value.Year == yearCodeBehind.Year
-                    //                                                        && u.DateGetSert.Value.Month == a)
-                    //                        join ap in db.Applicants.Where(a => a.AreaFk == idArea.Id) on r.ApplicantFk equals ap.Id
-                    //                        select new
-                    //                        {
-                    //                            id = r.Id
-                    //                        };
-
-
-                    //        doc.SetCellValue($"{chars[ch]}{i}", countSert.Count());
-                    //        summTotal += countSert.Count();
-                    //        doc.SetCellStyle($"{chars[ch]}{i}", strokeStyle);
-                    //        doc.SetRowHeight(i, 25);
-
-                    //        i++;
-                    //    }
-                    //    nextLine = i;
-                    //    totalByMonth.Add(summTotal);
-                    //    i = 2;
-                    //    ch++;
-                    //    dewq = false;
-                    //}
-
-
-
-
+                    
+                        foreach (var j in getMyPers)
+                        {
+                            doc.SetCellValue(rowIndex, 1, j.Id);
+                            doc.SetCellValue(rowIndex, 2, j.Family);
+                            doc.SetCellValue(rowIndex, 3, j.Name);
+                            doc.SetCellValue(rowIndex, 4, j.Lastname);
+                            doc.SetCellValue(rowIndex, 5, j.Inn);
+                            doc.SetCellValue(rowIndex, 6, j.NameDivisions);
+                            doc.SetCellValue(rowIndex, 7, j.NameJobTitle);
+                            doc.SetCellValue(rowIndex, 8, j.Salary.ToString());
+                            doc.SetCellValue(rowIndex, 9, j.Adress);
+                            doc.SetCellValue(rowIndex, 10, j.NameArea);
+                            doc.SetCellValue(rowIndex, 11, j.ChildrenCount.ToString());
+                            doc.SetCellStyle(2, 1, getMyPers.Count() + 1, 11, strokeStyle);
+                            doc.SetRowHeight(2, getMyPers.Count(), 40);
+                            rowIndex++;
+                        }
 
                     // Сохранение документа
                     doc.SaveAs(str);
