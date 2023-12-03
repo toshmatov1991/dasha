@@ -31,6 +31,11 @@
                   Height="300"
                   Width="228"
                   Margin="0,10,0,0" CellEditEnding="AreaCell">
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Удалить запись" Click="DeleteArea"/>
+                </ContextMenu>
+            </DataGrid.ContextMenu>
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Id, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" Header="id" Width="50"/>
                 <DataGridTextColumn Binding="{Binding NameArea, UpdateSourceTrigger=PropertyChanged}" Header="Район" Width="170"/>
@@ -43,6 +48,11 @@
                   AutoGenerateColumns="False"
                   CanUserAddRows="False"
                   Height="300" Margin="246,10,101,0" Grid.ColumnSpan="2" CellEditEnding="SubCell">
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Удалить запись" Click="DeleteSub"/>
+                </ContextMenu>
+            </DataGrid.ContextMenu>
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Id, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" Header="id" Width="50"/>
                 <DataGridTextColumn Binding="{Binding NameDivisions, UpdateSourceTrigger=PropertyChanged}" Header="Подразделение" Width="180"/>
@@ -57,6 +67,11 @@
                   AutoGenerateColumns="False"
                   CanUserAddRows="False"
                   Margin="216,10,10,0" Grid.ColumnSpan="2" CellEditEnding="JobCell">
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Удалить запись" Click="DeleteJobAndSalary"/>
+                </ContextMenu>
+            </DataGrid.ContextMenu>
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Id, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" Header="id" Width="50"/>
                 <DataGridTextColumn Binding="{Binding NameJobTitle, UpdateSourceTrigger=PropertyChanged}" Header="Должность" Width="200"/>

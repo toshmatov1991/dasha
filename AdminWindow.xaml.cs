@@ -132,5 +132,56 @@ namespace HumanResourcesDepartmentWPFApp
                 await db.Database.ExecuteSqlRawAsync("UPDATE JobTitles SET nameJobTitle = {0}, salary = {1} WHERE Id = {2}", a.NameJobTitle, a.Salary, a.Id);
             }
         }
+
+        private void DeleteArea(object sender, RoutedEventArgs e)
+        {
+            using OkContext ok = new();
+            MessageBoxResult result = MessageBox.Show("Вы уверены что хотите удалить запись?", "Внимание", MessageBoxButton.YesNo, MessageBoxImage.Information);
+            if (result == MessageBoxResult.Yes)
+            {
+                int numberOfRowDeleted = ok.Database.ExecuteSqlRaw("DELETE FROM Areas WHERE id = {0}", (AreaX.SelectedItem as Area)?.Id);
+                if (numberOfRowDeleted == 1)
+                    StartAdminWindow();
+
+                else
+                    MessageBox.Show("Произошла ошибка при удалении записи\n Повторите попытку");
+
+            }
+
+        }
+
+        private void DeleteSub(object sender, RoutedEventArgs e)
+        {
+            using OkContext ok = new();
+            MessageBoxResult result = MessageBox.Show("Вы уверены что хотите удалить запись?", "Внимание", MessageBoxButton.YesNo, MessageBoxImage.Information);
+            if (result == MessageBoxResult.Yes)
+            {
+                int numberOfRowDeleted = ok.Database.ExecuteSqlRaw("DELETE FROM SubDivisions WHERE id = {0}", (SubX.SelectedItem as SubDivision)?.Id);
+                if (numberOfRowDeleted == 1)
+                    StartAdminWindow();
+
+                else
+                    MessageBox.Show("Произошла ошибка при удалении записи\n Повторите попытку");
+
+            }
+
+        }
+
+        private void DeleteJobAndSalary(object sender, RoutedEventArgs e)
+        {
+            using OkContext ok = new();
+            MessageBoxResult result = MessageBox.Show("Вы уверены что хотите удалить запись?", "Внимание", MessageBoxButton.YesNo, MessageBoxImage.Information);
+            if (result == MessageBoxResult.Yes)
+            {
+                int numberOfRowDeleted = ok.Database.ExecuteSqlRaw("DELETE FROM JobTitles WHERE id = {0}", (JobX.SelectedItem as JobTitle)?.Id);
+                if (numberOfRowDeleted == 1)
+                    StartAdminWindow();
+
+                else
+                    MessageBox.Show("Произошла ошибка при удалении записи\n Повторите попытку");
+
+            }
+
+        }
     }
 }
