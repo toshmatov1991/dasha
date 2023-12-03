@@ -32,7 +32,7 @@
 
 
 
-            <Image gif:ImageBehavior.RepeatBehavior="3x" gif:ImageBehavior.AnimatedSource="Images/ty.gif" Height="116" Grid.RowSpan="2" VerticalAlignment="Top" Grid.Column="4" Grid.ColumnSpan="2" Margin="33,5,88,0" />
+            <Image gif:ImageBehavior.AnimatedSource="Images/ty.gif" Height="116" Grid.RowSpan="2" VerticalAlignment="Top" Grid.Column="4" Grid.ColumnSpan="2" Margin="33,5,88,0" />
 
 
             <DataGrid x:Name="dataGrid"

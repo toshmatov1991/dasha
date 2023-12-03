@@ -24,7 +24,7 @@
         <TextBlock x:Name="DolX" HorizontalAlignment="Left" Margin="191,218,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="173" Height="22"><Run Language="ru-ru" Text="Должность"/></TextBlock>
         <TextBlock HorizontalAlignment="Left" Margin="78,255,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="40" Height="22"><Run Language="ru-ru" Text="Оклад"/></TextBlock>
         <TextBlock x:Name="OkX" HorizontalAlignment="Left" Margin="191,253,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="173" Height="22"><Run Language="ru-ru" Text="Оклад"/></TextBlock>
-        <Image gif:ImageBehavior.RepeatBehavior="3x" gif:ImageBehavior.AnimatedSource="/Images/awaitT.gif" Margin="19,297,43,0"/>
+        <Image gif:ImageBehavior.AnimatedSource="/Images/awaitT.gif" Margin="19,297,43,0"/>
 
     </Grid>
 </Window>

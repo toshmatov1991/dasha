@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -53,47 +54,83 @@ namespace HumanResourcesDepartmentWPFApp
         {
             using OkContext db = new();
             AreaX.CanUserAddRows = true;
-            await db.Database.ExecuteSqlInterpolatedAsync($"INSERT INTO Area(AreaName) VALUES({a.AreaName})");
+            await db.Database.ExecuteSqlInterpolatedAsync($"INSERT INTO Areas(nameArea) VALUES({null})");
+            AreaX.ItemsSource = db.Areas.ToList();
+            AreaX.CanUserAddRows = false;
         }
 
 
         // Добавить подразделение
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private async void Button_Click_1(object sender, RoutedEventArgs e)
         {
             using OkContext db = new();
             SubX.CanUserAddRows = true;
-            
+            await db.Database.ExecuteSqlInterpolatedAsync($"INSERT INTO SubDivisions(nameDivisions) VALUES({null})");
+            SubX.ItemsSource = db.SubDivisions.ToList();
+            SubX.CanUserAddRows = false;
+
         }
 
 
         // Добавить должность и оклад
-        private void Button_Click_2(object sender, RoutedEventArgs e)
+        private async void Button_Click_2(object sender, RoutedEventArgs e)
         {
             using OkContext db = new();
             JobX.CanUserAddRows = true;
+            await db.Database.ExecuteSqlInterpolatedAsync($"INSERT INTO JobTitles(nameJobTitle, salary) VALUES({null}, {null})");
+            JobX.ItemsSource = db.JobTitles.ToList();
+            JobX.CanUserAddRows = false;
 
         }
+
 
 
 
 
 
         // Редактировать запись в таблице Районы
-        private void AreaCell(object sender, DataGridCellEditEndingEventArgs e)
+        private async void AreaCell(object sender, DataGridCellEditEndingEventArgs e)
         {
+            //Считывание строки
+            Area? a = e.Row.Item as Area;
 
+            using OkContext db = new();
+
+            if (a.Id != 0)
+            {
+                //Обновление таблицы Населенный пункт
+                await db.Database.ExecuteSqlRawAsync("UPDATE Areas SET nameArea = {0} WHERE Id = {1}", a.NameArea, a.Id);
+            }
         }
 
         // Редактировать записи в таблице Подразделение
-        private void SubCell(object sender, DataGridCellEditEndingEventArgs e)
+        private async void SubCell(object sender, DataGridCellEditEndingEventArgs e)
         {
+            //Считывание строки
+            SubDivision? a = e.Row.Item as SubDivision;
 
+            using OkContext db = new();
+
+            if (a.Id != 0)
+            {
+                //Обновление таблицы Населенный пункт
+                await db.Database.ExecuteSqlRawAsync("UPDATE SubDivisions SET nameDivisions = {0} WHERE Id = {1}", a.NameDivisions, a.Id);
+            }
         }
 
         // Редактировать записи в таблице Должности и оклады
-        private void JobCell(object sender, DataGridCellEditEndingEventArgs e)
+        private async void JobCell(object sender, DataGridCellEditEndingEventArgs e)
         {
+            //Считывание строки
+            JobTitle? a = e.Row.Item as JobTitle;
 
+            using OkContext db = new();
+
+            if (a.Id != 0)
+            {
+                //Обновление таблицы Населенный пункт
+                await db.Database.ExecuteSqlRawAsync("UPDATE JobTitles SET nameJobTitle = {0}, salary = {1} WHERE Id = {2}", a.NameJobTitle, a.Salary, a.Id);
+            }
         }
     }
 }
