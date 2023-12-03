@@ -63,8 +63,8 @@ namespace HumanResourcesDepartmentWPFApp
         //При закрытии открывается окно авторизации
         private void BaseClose(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            //MainWindow mainWindow = new();
-            //mainWindow.Show();
+            MainWindow mainWindow = new();
+            mainWindow.Show();
         }
 
 
