@@ -12,6 +12,7 @@
     <None Remove="123.jpg" />
     <None Remove="Images\1234.jpg" />
     <None Remove="Images\awaitT.gif" />
+    <None Remove="Images\ttt.gif" />
     <None Remove="Images\ty.gif" />
   </ItemGroup>
 
@@ -20,6 +21,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\awaitT.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\ttt.gif">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\ty.gif">

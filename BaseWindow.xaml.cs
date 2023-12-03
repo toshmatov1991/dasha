@@ -371,11 +371,6 @@ namespace HumanResourcesDepartmentWPFApp
             }
 
         }
-
-
-
-
-
     }
 }
  
